@@ -1,0 +1,60 @@
+.wrapper {
+  padding-top: 25px;
+  background-color: rgb(31, 31, 31);
+
+  .reviewsClients {
+    text-align: center;
+    color: aliceblue;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    .item {
+      margin-bottom: 20px;
+      border: 1px solid white;
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      align-items: center;
+
+      .person {
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid white;
+
+        .photo {
+          height: 100%;
+          max-height: 354px;
+        }
+
+        .name {
+          color: aliceblue;
+          text-align: center;
+        }
+      }
+
+      .review {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+
+        .text {
+          color: white;
+          width: 100%;
+          max-width: 550px;
+        }
+
+        .starsSection {
+          margin-top: 20px;
+          display: flex;
+          column-gap: 20px;
+        }
+      }
+    }
+  }
+}
