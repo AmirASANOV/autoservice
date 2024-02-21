@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import s from "./Login.module.scss";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { login } from "../../store/user/userSlice";
 
 interface IValue {
   email: string;
@@ -9,6 +11,8 @@ interface IValue {
 
 const Login = () => {
   const [value, setValue] = useState<IValue>({ email: "", password: "" });
+
+  const dispatch = useAppDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,7 +27,10 @@ const Login = () => {
       .post("http://localhost:1000/auth/login", value)
 
       .then((response) => {
-        console.log("Ответ сервера:", response);
+        console.log(
+          "Ответ сервера:",
+          dispatch(login({ token: response.data }))
+        );
       })
       .catch((error) => {
         console.error("Произошла ошибка:", error);

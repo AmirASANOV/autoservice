@@ -16,8 +16,8 @@ const App = () => {
       <Advantages />
       <Reviews />
       <WorkingHours /> */}
-      {/* <Login /> */}
-      <Registration />
+      <Login />
+      {/* <Registration /> */}
     </div>
   );
 };
