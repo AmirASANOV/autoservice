@@ -10,7 +10,7 @@ export class CreateUserDto {
   @IsEmail()
   email: string;
 
-  @ApiProperty({ example: 'pass ojnervoinro', description: 'pass' })
+  @ApiProperty({ example: 'qwerty', description: 'pass' })
   @IsString()
   password: string;
 

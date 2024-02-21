@@ -9,6 +9,10 @@ const Preview = () => {
         <p className={s.brandName}>open drive</p>
         <p className={s.brandDescription}>Сеть автосервисов</p>
         <button className={s.button}>Регистрация</button>
+        <div className={s.auth}>
+          <p className={s.text}>Уже есть аккаунт?</p>
+          <button className={s.btn}>Войти</button>
+        </div>
         <div className={s.socials}>
           <img
             src="/preview/socials/1486147202-social-media-circled-network10_79475 (1) 1.svg"

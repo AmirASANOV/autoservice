@@ -1,0 +1,15 @@
+.wrapper {
+  height: 20vh;
+  background-color: #323232;
+  padding-left: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    font-family: "Inter", sans-serif;
+    color: white;
+    font-weight: 100;
+    opacity: 50%;
+  }
+}

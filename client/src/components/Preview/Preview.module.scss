@@ -44,6 +44,38 @@
       color: white;
       font-family: "Inter", sans-serif;
       font-size: 50px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #ffffff2f;
+      }
+    }
+
+    .auth {
+      margin-top: 10px;
+      display: flex;
+      column-gap: 10px;
+      opacity: 90%;
+
+      .text {
+        color: #fff;
+        font-family: "Inter", sans-serif;
+        opacity: 50%;
+      }
+
+      .btn {
+        width: 60px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+        transition: 0.3s;
+        border-radius: 3px;
+
+        &:hover {
+          background-color: #ffffff52;
+        }
+      }
     }
 
     .socials {
