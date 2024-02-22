@@ -1,17 +1,22 @@
 import React from "react";
 import s from "./Preview.module.scss";
+import { Link } from "react-router-dom";
 
-const Preview = () => {
+const Menu = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.text}>
         <img className={s.headerLogo} src="/header/logo.svg" alt="logo" />
         <p className={s.brandName}>open drive</p>
         <p className={s.brandDescription}>Сеть автосервисов</p>
-        <button className={s.button}>Регистрация</button>
+        <Link to="/registration" className={s.button}>
+          Регистрация
+        </Link>
         <div className={s.auth}>
           <p className={s.text}>Уже есть аккаунт?</p>
-          <button className={s.btn}>Войти</button>
+          <Link to="/login" className={s.btn}>
+            Войти
+          </Link>
         </div>
         <div className={s.socials}>
           <img
@@ -37,4 +42,4 @@ const Preview = () => {
   );
 };
 
-export default Preview;
+export default Menu;

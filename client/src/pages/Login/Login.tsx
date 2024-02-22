@@ -3,6 +3,7 @@ import s from "./Login.module.scss";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { login } from "../../store/user/userSlice";
+import { useNavigate } from "react-router-dom";
 
 interface IValue {
   email: string;
@@ -11,7 +12,7 @@ interface IValue {
 
 const Login = () => {
   const [value, setValue] = useState<IValue>({ email: "", password: "" });
-
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,6 +32,7 @@ const Login = () => {
           "Ответ сервера:",
           dispatch(login({ token: response.data }))
         );
+        navigate("/");
       })
       .catch((error) => {
         console.error("Произошла ошибка:", error);
