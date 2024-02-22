@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Menu.module.scss";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Header from "../Header/Header";
 import { logout } from "../../store/user/userSlice";
@@ -9,9 +9,11 @@ const Menu = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
   const username = useAppSelector((state) => state.user.username);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const HandleLogout = () => {
     dispatch(logout(null));
+    navigate("/");
   };
 
   return (
@@ -35,7 +37,9 @@ const Menu = () => {
         ) : (
           <>
             <h1 className={s.username}>{username}</h1>
-            <button onClick={HandleLogout}>logout</button>
+            <button className={s.logout} onClick={HandleLogout}>
+              logout
+            </button>
           </>
         )}
         <div className={s.socials}>
@@ -44,15 +48,12 @@ const Menu = () => {
             alt=""
           />
           <img
-            src="/preview/socials/1486147202-social-media-circled-network10_79475 (1) 1.svg"
+            src="/preview/socials/1491579542-yumminkysocialmedia22_83078 1.svg"
             alt=""
           />
+
           <img
-            src="/preview/socials/1486147202-social-media-circled-network10_79475 (1) 1.svg"
-            alt=""
-          />
-          <img
-            src="/preview/socials/1486147202-social-media-circled-network10_79475 (1) 1.svg"
+            src="/preview/socials/1491580651-yumminkysocialmedia28_83061 1.svg"
             alt=""
           />
         </div>

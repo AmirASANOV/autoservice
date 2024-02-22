@@ -17,6 +17,17 @@
       margin-top: 20px;
     }
 
+    .logout {
+      margin-top: 20px;
+      width: 100%;
+      max-width: 100px;
+      background: #00000068;
+      cursor: pointer;
+      border-radius: 30px;
+      border: none;
+      color: #fff;
+    }
+
     .brandName {
       width: 100%;
       max-width: 954px;
@@ -78,6 +89,9 @@
         color: #fff;
         transition: 0.3s;
         border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         &:hover {
           background-color: #ffffff52;
@@ -87,6 +101,8 @@
 
     .socials {
       margin-top: 50px;
+      display: flex;
+      column-gap: 30px;
     }
   }
 }
