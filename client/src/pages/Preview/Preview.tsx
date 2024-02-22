@@ -13,7 +13,7 @@ import Tuning from "../../components/Tuning/Tuning";
 import PriceWorking from "../../components/PriceWorking/PriceWorking";
 
 const Preview = () => {
-  const selector = useAppSelector((login) => login.user.isAuth);
+  const selector = useAppSelector((state) => state.user.isAuth);
   console.log(selector);
   return (
     <div>

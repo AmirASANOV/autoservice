@@ -12,7 +12,7 @@ import Menu from "./components/Menu/Menu";
 import { useAppSelector } from "./store/hooks";
 
 const App = () => {
-  const selector = useAppSelector((login) => login.user.isAuth);
+  const selector = useAppSelector((state) => state.user.isAuth);
 
   return (
     <div className={s.wrapper}>

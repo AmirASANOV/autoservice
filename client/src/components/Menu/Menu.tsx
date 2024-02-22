@@ -1,17 +1,21 @@
 import React from "react";
 import s from "./Menu.module.scss";
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../store/hooks";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Header from "../Header/Header";
+import { logout } from "../../store/user/userSlice";
 
 const Menu = () => {
-  const isAuth = useAppSelector((login) => login.user.isAuth);
-  const username = useAppSelector((login) => login.user.username);
-  console.log(username);
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const username = useAppSelector((state) => state.user.username);
+  const dispatch = useAppDispatch();
+
+  const HandleLogout = () => {
+    dispatch(logout(null));
+  };
 
   return (
     <div className={s.wrapper}>
-
       <div className={s.text}>
         <p className={s.brandName}>open drive</p>
         <p className={s.brandDescription}>Сеть автосервисов</p>
@@ -29,7 +33,10 @@ const Menu = () => {
             </div>
           </>
         ) : (
-          <h1 className={s.username}>{username}</h1>
+          <>
+            <h1 className={s.username}>{username}</h1>
+            <button onClick={HandleLogout}>logout</button>
+          </>
         )}
         <div className={s.socials}>
           <img
