@@ -43,6 +43,6 @@ export class AuthService {
       password: passHash,
     };
     const user = await this.users.save(newUser);
-    return user;
+    return { username: user.name };
   }
 }

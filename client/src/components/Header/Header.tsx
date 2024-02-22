@@ -11,16 +11,16 @@ const Header = () => {
         <Link className={s.link} to={"/"}>
           Главная
         </Link>
-        <Link className={s.link} to={""}>
+        <Link className={s.link} to={"/services"}>
           Услуги
         </Link>
-        <Link className={s.link} to={""}>
+        <Link className={s.link} to={"/aboutUs"}>
           О нас
         </Link>
         <Link className={s.link} to={""}>
           Контакты
         </Link>
-        <Link className={s.link} to={""}>
+        <Link className={s.link} to={"/forum"}>
           Форум
         </Link>
       </ul>

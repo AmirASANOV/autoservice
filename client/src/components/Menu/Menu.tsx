@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Menu.module.scss";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../store/hooks";
+import Header from "../Header/Header";
 
 const Menu = () => {
   const isAuth = useAppSelector((login) => login.user.isAuth);
@@ -10,6 +11,7 @@ const Menu = () => {
 
   return (
     <div className={s.wrapper}>
+
       <div className={s.text}>
         <p className={s.brandName}>open drive</p>
         <p className={s.brandDescription}>Сеть автосервисов</p>

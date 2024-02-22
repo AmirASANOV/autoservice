@@ -1,0 +1,41 @@
+.wrapper {
+  height: 100vh;
+  background: #2c2828;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.section {
+  background-color: #d9d9d927;
+  width: 60%;
+  padding: 20px;
+  margin-bottom: 30px;
+
+  .title {
+    font-size: 20px;
+  }
+  .description {
+    font-size: 16px;
+  }
+}
+.button {
+  font-size: 16px;
+  width: 300px;
+  height: 40px;
+  border-radius: 30px;
+  border: none;
+  color: #fff;
+  background: #ffffff0d;
+  transition: 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+}
+
+p {
+  font-family: "Inter", sans-serif;
+  color: white;
+}

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import s from "./Registration.module.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../store/hooks";
+import { login } from "../../store/user/userSlice";
 
 interface IValue {
   name: string;
@@ -17,6 +20,9 @@ const Registration = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setValue((prevState) => ({
@@ -29,8 +35,10 @@ const Registration = () => {
     axios
       .post("http://localhost:1000/auth/registration", value)
 
-      .then((response) => {
-        console.log("Ответ сервера:", response);
+      .then((response: any) => {
+        console.log("Ответ сервера:", response.data);
+        dispatch(login({ token: response.data }));
+        navigate("/");
       })
       .catch((error) => {
         console.error("Произошла ошибка:", error);
@@ -72,7 +80,7 @@ const Registration = () => {
         placeholder="+7-999-999-99-99"
       />
       <button onClick={handleSubmit} className={s.button}>
-        Login
+        Registration
       </button>
     </div>
   );
