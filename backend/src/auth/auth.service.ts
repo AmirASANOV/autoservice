@@ -29,7 +29,9 @@ export class AuthService {
     const compared = await bcrypt.compare(loginUserDto.password, user.password);
     if (!compared) throw new UnauthorizedException({ message: 'Error' });
 
-    return this.tokenService.generateToken(user.id);
+    const token = this.tokenService.generateToken(user.id);
+
+    return { token, username: user.name };
   }
 
   async registration(createUserDto: CreateUserDto) {

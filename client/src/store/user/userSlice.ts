@@ -6,12 +6,14 @@ import { RootState } from "../store";
 interface IUserSlice {
   token: string | null;
   isAuth: boolean;
+  username: string | null;
 }
 
 // Define the initial state using that type
 const initialState: IUserSlice = {
   token: null,
   isAuth: false,
+  username: null,
 };
 
 export const userSlice = createSlice({
@@ -21,6 +23,7 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.token = action.payload.token;
+      state.username = action.payload.token.username;
       state.isAuth = true;
     },
     logout: (state, action) => {},

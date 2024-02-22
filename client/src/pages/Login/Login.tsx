@@ -27,11 +27,9 @@ const Login = () => {
     axios
       .post("http://localhost:1000/auth/login", value)
 
-      .then((response) => {
-        console.log(
-          "Ответ сервера:",
-          dispatch(login({ token: response.data }))
-        );
+      .then((response: any) => {
+        console.log("Ответ сервера:", response.data);
+        dispatch(login({ token: response.data }));
         navigate("/");
       })
       .catch((error) => {
