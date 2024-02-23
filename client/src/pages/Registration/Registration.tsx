@@ -36,7 +36,6 @@ const Registration = () => {
       .post("http://localhost:1000/auth/registration", value)
 
       .then((response: any) => {
-        console.log("Ответ сервера:", response.data);
         dispatch(login({ token: response.data }));
         navigate("/");
       })

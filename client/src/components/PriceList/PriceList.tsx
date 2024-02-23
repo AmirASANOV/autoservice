@@ -1,7 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import s from "./PriceList.module.scss";
+import Modal from "../Modal/Modal";
+import axios from "axios";
+import { login } from "../../store/user/userSlice";
+
+interface IOrder {
+  visitDate: string;
+  nameCar: string;
+  repairType: string;
+}
 
 const PriceList = () => {
+  const [active, setActive] = useState<boolean>(false);
+
+  const [value, setValue] = useState<IOrder>({
+    visitDate: "",
+    nameCar: "",
+    repairType: "",
+  });
+
+  console.log(value);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setValue((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = () => {
+    axios
+      .post("http://localhost:1000/orders", value)
+
+      .then((response: any) => {
+        console.log("Успешно:" + response.data);
+      })
+
+      .catch((error) => {
+        console.error("Произошла ошибка:", error);
+      });
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.section}>
@@ -46,7 +86,42 @@ const PriceList = () => {
         </p>
       </div>
 
-      <button className={s.button}>Записаться</button>
+      <button onClick={() => setActive(!active)} className={s.button}>
+        Записаться
+      </button>
+
+      <Modal active={active} setActive={setActive}>
+        <p className={s.textModal}>Введите данные вашего авто</p>
+
+        <p className={s.textModal}>Марка авто:</p>
+        <input
+          onChange={handleChange}
+          name="nameCar"
+          value={value.nameCar}
+          type="text"
+          placeholder="BMW"
+        />
+
+        <p className={s.textModal}>Тип ремонта</p>
+        <input
+          onChange={handleChange}
+          name="repairType"
+          value={value.repairType}
+          type="text"
+          placeholder="Тотал"
+        />
+
+        <p className={s.textModal}>Дата:</p>
+        <input
+          onChange={handleChange}
+          name="visitDate"
+          value={value.visitDate}
+          type="text"
+          placeholder="2000-11-22T00:00:00.000Z"
+        />
+
+        <button onClick={handleSubmit}>send</button>
+      </Modal>
     </div>
   );
 };

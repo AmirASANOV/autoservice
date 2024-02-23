@@ -14,7 +14,7 @@ import PriceWorking from "../../components/PriceWorking/PriceWorking";
 
 const Preview = () => {
   const selector = useAppSelector((state) => state.user.isAuth);
-  console.log(selector);
+
   return (
     <div>
       <Menu />

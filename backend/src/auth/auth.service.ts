@@ -29,9 +29,7 @@ export class AuthService {
     const compared = await bcrypt.compare(loginUserDto.password, user.password);
     if (!compared) throw new UnauthorizedException({ message: 'Error' });
 
-    const token = this.tokenService.generateToken(user.id);
-
-    return { token, username: user.name };
+    return this.tokenService.generateToken(user.id);
   }
 
   async registration(createUserDto: CreateUserDto) {
@@ -43,6 +41,10 @@ export class AuthService {
       password: passHash,
     };
     const user = await this.users.save(newUser);
-    return { username: user.name };
+    return user;
+  }
+
+  async getMe(user) {
+    return this.users.findOne({ where: { id: user.id } });
   }
 }

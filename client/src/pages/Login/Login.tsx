@@ -28,7 +28,6 @@ const Login = () => {
       .post("http://localhost:1000/auth/login", value)
 
       .then((response: any) => {
-        console.log("Ответ сервера:", response.data);
         dispatch(login({ token: response.data }));
         navigate("/");
       })
