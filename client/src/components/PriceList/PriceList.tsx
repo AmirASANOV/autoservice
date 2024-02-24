@@ -12,6 +12,8 @@ interface IOrder {
 
 const PriceList = () => {
   const [active, setActive] = useState<boolean>(false);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  console.log(isSuccess);
 
   const [value, setValue] = useState<IOrder>({
     visitDate: "",
@@ -29,12 +31,25 @@ const PriceList = () => {
     }));
   };
 
+  const successActivate = () => {
+    setIsSuccess(true);
+    setTimeout(() => {
+      setIsSuccess(false);
+      setActive(false);
+    }, 2000);
+  };
+
   const handleSubmit = () => {
     axios
-      .post("http://localhost:1000/orders", value)
+      .post("http://localhost:1000/orders", value, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
 
       .then((response: any) => {
         console.log("Успешно:" + response.data);
+        successActivate();
       })
 
       .catch((error) => {
@@ -121,6 +136,10 @@ const PriceList = () => {
         />
 
         <button onClick={handleSubmit}>send</button>
+      </Modal>
+
+      <Modal active={isSuccess} setActive={setIsSuccess}>
+        <p className={s.textModal}>Заявка успешно создана!</p>
       </Modal>
     </div>
   );
