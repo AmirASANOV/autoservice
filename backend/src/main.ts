@@ -23,7 +23,10 @@ async function bootstrap() {
     }),
   );
 
-  const config = new DocumentBuilder().setTitle('AutoService').build();
+  const config = new DocumentBuilder()
+    .addBearerAuth()
+    .setTitle('AutoService')
+    .build();
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

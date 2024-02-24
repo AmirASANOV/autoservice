@@ -3,7 +3,9 @@ import { OrdersService } from './orders.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { TokenGuard } from 'src/auth/token.guard';
 import { Request } from 'express';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
@@ -13,8 +15,6 @@ export class OrdersController {
   async create(@Body() createOrderDto: CreateOrderDto, @Req() req: Request) {
     return this.ordersService.create(createOrderDto, req['user']);
   }
-
-  //getAll
 
   @UseGuards(TokenGuard)
   @Get()

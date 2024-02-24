@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, UseGuards, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { TokenGuard } from './token.guard';
 import { Request } from 'express';
 
@@ -21,6 +21,7 @@ export class AuthController {
     return this.authService.login(loginUserDto);
   }
 
+  @ApiBearerAuth()
   @UseGuards(TokenGuard)
   @Get('getme')
   getMe(@Req() req: Request) {

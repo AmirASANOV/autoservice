@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./Menu.module.scss";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import Header from "../Header/Header";
-import { logout } from "../../store/user/userSlice";
+import { logout, setUser } from "../../store/user/userSlice";
+import axios from "axios";
 
 const Menu = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
-  const username = useAppSelector((state) => state.user.username);
+  const user = useAppSelector((state) => state.user.user);
+  console.log(user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -15,6 +17,25 @@ const Menu = () => {
     dispatch(logout(null));
     navigate("/");
   };
+
+  useEffect(() => {
+    isAuth &&
+      axios
+        .get("http://localhost:1000/auth/getme", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
+
+        .then((response: any) => {
+          console.log(response.data);
+          dispatch(setUser({ user: response.data }));
+        })
+
+        .catch((error) => {
+          console.error("Произошла ошибка:", error);
+        });
+  }, [isAuth]);
 
   return (
     <div className={s.wrapper}>
@@ -36,7 +57,7 @@ const Menu = () => {
           </>
         ) : (
           <>
-            <h1 className={s.username}>{username}</h1>
+            <h1 className={s.username}>{user?.name}</h1>
             <button className={s.logout} onClick={HandleLogout}>
               logout
             </button>

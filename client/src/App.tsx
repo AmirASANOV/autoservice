@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./App.module.scss";
 import Preview from "./pages/Preview/Preview";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import Registration from "./pages/Registration/Registration";
 import Services from "./pages/Services/Services";
@@ -9,14 +9,21 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import Forum from "./pages/Forum/Forum";
 import Header from "./components/Header/Header";
 import Menu from "./components/Menu/Menu";
-import { useAppSelector } from "./store/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import axios from "axios";
 
 const App = () => {
-  const selector = useAppSelector((state) => state.user.isAuth);
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  console.log(isAuth);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  
 
   return (
     <div className={s.wrapper}>
-      {selector && (
+      {isAuth && (
         <>
           <Header />
         </>
@@ -27,10 +34,10 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
 
-        {selector && (
+        {isAuth && (
           <>
-            <Route path="/services" element={<Services />} />
             <Route path="/aboutUs" element={<AboutUsPage />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/forum" element={<Forum />} />
           </>
         )}

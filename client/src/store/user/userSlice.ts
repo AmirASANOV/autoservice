@@ -1,19 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { IUser } from "../../types/IUser";
 
 // Define a type for the slice state
 interface IUserSlice {
   token: string | null;
   isAuth: boolean;
-  username: string | null;
+  user: IUser | null;
 }
 
 // Define the initial state using that type
 const initialState: IUserSlice = {
   token: null,
   isAuth: false,
-  username: null,
+  user: null,
 };
 
 export const userSlice = createSlice({
@@ -21,20 +22,21 @@ export const userSlice = createSlice({
 
   initialState,
   reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload.user;
+    },
     login: (state, action) => {
       state.token = action.payload.token;
-      state.username = action.payload.token.username;
       state.isAuth = true;
     },
     logout: (state, action) => {
       state.token = null;
-      state.username = null;
       state.isAuth = false;
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { setUser, login, logout } = userSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCount = (state: RootState) => state.user;

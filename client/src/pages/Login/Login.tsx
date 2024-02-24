@@ -29,6 +29,7 @@ const Login = () => {
 
       .then((response: any) => {
         dispatch(login({ token: response.data }));
+        localStorage.setItem("token", response.data.token);
         navigate("/");
       })
       .catch((error) => {
