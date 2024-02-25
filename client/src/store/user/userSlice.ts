@@ -10,10 +10,11 @@ interface IUserSlice {
   user: IUser | null;
 }
 
-// Define the initial state using that type
+const token = localStorage.getItem("token");
+
 const initialState: IUserSlice = {
-  token: null,
-  isAuth: false,
+  token: token || null,
+  isAuth: !!token,
   user: null,
 };
 
@@ -27,11 +28,13 @@ export const userSlice = createSlice({
     },
     login: (state, action) => {
       state.token = action.payload.token;
+      localStorage.setItem("token", action.payload.token);
       state.isAuth = true;
     },
     logout: (state, action) => {
       state.token = null;
       state.isAuth = false;
+      localStorage.removeItem("token");
     },
   },
 });

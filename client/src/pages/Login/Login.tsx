@@ -28,8 +28,7 @@ const Login = () => {
       .post("http://localhost:1000/auth/login", value)
 
       .then((response: any) => {
-        dispatch(login({ token: response.data }));
-        localStorage.setItem("token", response.data.token);
+        dispatch(login({ token: response.data.token }));
         navigate("/");
       })
       .catch((error) => {

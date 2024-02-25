@@ -3,6 +3,7 @@ import s from "./PriceList.module.scss";
 import Modal from "../Modal/Modal";
 import axios from "axios";
 import { login } from "../../store/user/userSlice";
+import { useAppSelector } from "../../store/hooks";
 
 interface IOrder {
   visitDate: string;
@@ -13,6 +14,7 @@ interface IOrder {
 const PriceList = () => {
   const [active, setActive] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const token = useAppSelector((state) => state.user.token);
   console.log(isSuccess);
 
   const [value, setValue] = useState<IOrder>({
@@ -43,7 +45,7 @@ const PriceList = () => {
     axios
       .post("http://localhost:1000/orders", value, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
       })
 
@@ -111,8 +113,8 @@ const PriceList = () => {
         <p className={s.textModal}>Марка авто:</p>
         <input
           onChange={handleChange}
-          name="nameCar"
           value={value.nameCar}
+          name="nameCar"
           type="text"
           placeholder="BMW"
         />

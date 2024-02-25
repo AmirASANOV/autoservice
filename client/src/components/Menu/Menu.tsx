@@ -8,8 +8,9 @@ import axios from "axios";
 
 const Menu = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
-  const user = useAppSelector((state) => state.user.user);
-  console.log(user);
+  const { user, token } = useAppSelector((state) => state.user);
+
+  console.log(user, token);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,12 +24,12 @@ const Menu = () => {
       axios
         .get("http://localhost:1000/auth/getme", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         })
 
         .then((response: any) => {
-          console.log(response.data);
+          console.log("User: " + response.data);
           dispatch(setUser({ user: response.data }));
         })
 

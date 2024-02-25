@@ -16,11 +16,6 @@ const App = () => {
   const isAuth = useAppSelector((state) => state.user.isAuth);
   console.log(isAuth);
 
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  
-
   return (
     <div className={s.wrapper}>
       {isAuth && (

@@ -13,8 +13,6 @@ import Tuning from "../../components/Tuning/Tuning";
 import PriceWorking from "../../components/PriceWorking/PriceWorking";
 
 const Preview = () => {
-  const selector = useAppSelector((state) => state.user.isAuth);
-
   return (
     <div>
       <Menu />
