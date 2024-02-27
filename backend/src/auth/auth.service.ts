@@ -45,6 +45,6 @@ export class AuthService {
   }
 
   async getMe(user) {
-    return this.users.findOne({ where: { id: user.id } });
+    return this.users.findOne({ where: { id: user.userId } });
   }
 }
